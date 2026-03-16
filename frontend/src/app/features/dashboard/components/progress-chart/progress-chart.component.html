@@ -1,0 +1,52 @@
+<div class="progress-panel">
+
+  <!-- donut chart -->
+  <div class="donut-wrapper">
+    <svg class="donut-svg" viewBox="0 0 120 120" aria-label="Progress donut chart">
+      <circle cx="60" cy="60" r="48" fill="none" stroke="#f3f4f6" stroke-width="12"/>
+      <!-- completed arc -->
+      <circle
+        cx="60" cy="60" r="48" fill="none" stroke="#a7f3d0" stroke-width="12"
+        [attr.stroke-dasharray]="completedArc + ' ' + (CIRCUMFERENCE - completedArc)"
+        stroke-dashoffset="0" stroke-linecap="round"
+        transform="rotate(-90 60 60)"/>
+      <!-- not started arc -->
+      <circle
+        cx="60" cy="60" r="48" fill="none" stroke="#c4b5fd" stroke-width="12"
+        [attr.stroke-dasharray]="notStartedArc + ' ' + (CIRCUMFERENCE - notStartedArc)"
+        [attr.stroke-dashoffset]="'-' + completedArc"
+        stroke-linecap="round" transform="rotate(-90 60 60)"/>
+      <text x="60" y="55" text-anchor="middle" class="donut-pct">{{ percentage }}%</text>
+      <text x="60" y="69" text-anchor="middle" class="donut-label">TOTAL DONE</text>
+    </svg>
+  </div>
+
+  <!-- legend -->
+  <div class="legend">
+    <div class="legend-row">
+      <span class="legend-dot green"></span>
+      <span class="legend-name">Completed</span>
+      <span class="legend-count green-text">{{ completedCount }}</span>
+    </div>
+    <div class="legend-row">
+      <span class="legend-dot purple"></span>
+      <span class="legend-name">Not Started</span>
+      <span class="legend-count purple-text">{{ notStartedCount }}</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- stat pills -->
+  <div class="stat-pills">
+    <div class="stat-pill">
+      <span class="stat-label">DUE SOON</span>
+      <span class="stat-value amber">{{ dueSoonCount }}</span>
+    </div>
+    <div class="stat-pill">
+      <span class="stat-label">TOTAL</span>
+      <span class="stat-value blue">{{ totalCount }}</span>
+    </div>
+  </div>
+
+</div>
