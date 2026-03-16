@@ -1,0 +1,20 @@
+# IntelliJ IDE
+.idea/
+*.iml
+*.iws
+
+# Eclipse IDE
+.settings/
+.classpath
+.project
+
+# Backend (Maven)
+backend/target/
+
+# Frontend (Angular/Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Other
+.DS_Store
