@@ -32,8 +32,4 @@ export class LoginComponent implements OnInit {
   loginWithGoogle(): void {
     window.location.href = `${environment.authUrl}/oauth2/authorization/google`;
   }
-
-  loginWithEmail(): void {
-    console.log('email login clicked');
-  }
 }
