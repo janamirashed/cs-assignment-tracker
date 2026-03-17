@@ -18,3 +18,5 @@ frontend/.angular/
 
 # Other
 .DS_Store
+
+backend/src/main/resources/application.properties

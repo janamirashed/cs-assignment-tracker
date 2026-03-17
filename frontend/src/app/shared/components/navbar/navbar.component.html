@@ -25,11 +25,12 @@
   <div class="navbar-right">
     <button class="user-profile" id="user-profile-btn" (click)="openLogoutModal()" aria-label="User menu">
       <div class="user-info">
-        <span class="user-name">Alex Rivera</span>
-        <span class="user-role">CS Junior</span>
+        <span class="user-name">{{ currentUser?.name }}</span>
+        <span class="user-role">{{ currentUser?.role === 'ADMIN' ? 'CS Admin' : 'CS Student' }}</span>
       </div>
       <div class="avatar" id="user-avatar">
-        <img src="https://i.pravatar.cc/40?img=12" alt="User avatar" />
+        <img *ngIf="currentUser?.pictureUrl" [src]="currentUser?.pictureUrl" alt="User avatar" referrerpolicy="no-referrer" />
+        <span *ngIf="!currentUser?.pictureUrl">{{ (currentUser?.name || '?')[0] | uppercase }}</span>
       </div>
     </button>
   </div>

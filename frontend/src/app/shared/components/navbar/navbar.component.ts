@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,9 @@ export class NavbarComponent {
 
   showLogoutModal = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
+
+  get currentUser() { return this.authService.getUser(); }
 
   onSearch(event: Event): void {
     this.searchChange.emit((event.target as HTMLInputElement).value);
@@ -30,6 +33,6 @@ export class NavbarComponent {
 
   confirmLogout(): void {
     this.showLogoutModal = false;
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 }

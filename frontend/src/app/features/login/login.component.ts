@@ -14,14 +14,7 @@ export class LoginComponent {
   constructor(private router: Router, private authService: AuthService) { }
 
   loginWithGoogle(): void {
-    // temporary: creates a fake admin user
-    this.authService.setUser({
-      id: 1,
-      email: 'admin@university.edu',
-      name: 'Admin User',
-      role: 'ADMIN'
-    });
-    this.router.navigate(['/dashboard']);
+    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
   }
 
   loginWithEmail(): void {
