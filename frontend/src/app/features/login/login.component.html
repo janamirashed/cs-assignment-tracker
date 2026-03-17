@@ -19,6 +19,11 @@
       <h1>Welcome Back</h1>
       <p class="subtitle">Track your progress and stay ahead with real-time insights.</p>
 
+      <!-- error message -->
+      <div *ngIf="errorMessage" class="error-banner" style="background: var(--rose-100); color: var(--rose-500); padding: 12px; border-radius: var(--radius-sm); margin-bottom: 20px; text-align: center; font-size: 14px; font-weight: 500;">
+        {{ errorMessage }}
+      </div>
+
       <!-- google sign-in -->
       <button class="google-btn" id="login-google-btn" (click)="loginWithGoogle()">
         <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google logo" class="google-logo">
