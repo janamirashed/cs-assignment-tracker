@@ -21,6 +21,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+      return;
+    }
+
     this.route.queryParams.subscribe(params => {
       if (params['error']) {
         this.errorMessage = params['error'];
