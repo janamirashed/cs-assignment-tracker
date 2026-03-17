@@ -80,12 +80,8 @@ export class DashboardComponent implements OnInit {
 
     // Sort by due date (from soonest to furthest)
     return result.sort((a, b) => {
-      const timeA = a.dueDate ? new Date(a.dueDate).getTime() : Infinity;
-      const timeB = b.dueDate ? new Date(b.dueDate).getTime() : Infinity;
-
-      // Handle invalid dates (push to end)
-      const valA = isNaN(timeA) ? Infinity : timeA;
-      const valB = isNaN(timeB) ? Infinity : timeB;
+      const valA = this.parseDate(a.dueDate);
+      const valB = this.parseDate(b.dueDate);
 
       if (valA !== valB) {
         return valA - valB;
@@ -94,6 +90,17 @@ export class DashboardComponent implements OnInit {
       // Secondary sort by ID for stability
       return (a.id || 0) - (b.id || 0);
     });
+  }
+
+  private parseDate(dateStr: string | undefined): number {
+    if (!dateStr) return Infinity;
+    
+    // Remove ordinal suffixes (st, nd, rd, th) from numbers
+    // e.g., "March 4th" -> "March 4", "1st Oct" -> "1 Oct"
+    const cleanDate = dateStr.replace(/(\d+)(st|nd|rd|th)/gi, '$1');
+    const time = new Date(cleanDate).getTime();
+    
+    return isNaN(time) ? Infinity : time;
   }
 
   get completedCount(): number { return this.assignments.filter(a => a.completed).length; }
