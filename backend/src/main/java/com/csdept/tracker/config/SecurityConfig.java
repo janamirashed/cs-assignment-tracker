@@ -69,8 +69,13 @@ public class SecurityConfig {
                                 user.getPictureUrl()
                         );
 
-                        log.info("JWT generated, redirecting to frontend for user: {}", email);
-                        response.sendRedirect(frontendRedirectUri + "?token=" + token);
+                        String finalRedirectUri = frontendRedirectUri;
+                        if (!finalRedirectUri.contains("#/oauth2/callback")) {
+                            finalRedirectUri = finalRedirectUri.replace("/oauth2/callback", "/#/oauth2/callback");
+                        }
+                        
+                        log.info("JWT generated, redirecting to frontend for user: {} to URL: {}", email, finalRedirectUri);
+                        response.sendRedirect(finalRedirectUri + "?token=" + token);
                     } catch (Exception e) {
                         log.error("Error in OAuth2 success handler", e);
                         response.sendRedirect(frontendBaseUrl + "/cs-assignment-tracker/#/login"
