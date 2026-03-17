@@ -191,3 +191,14 @@
   text-decoration: underline;
 }
 
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+  .card-content h1 {
+    font-size: 1.5rem;
+  }
+}
+

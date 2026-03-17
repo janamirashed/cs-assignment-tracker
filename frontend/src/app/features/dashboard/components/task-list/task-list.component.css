@@ -399,3 +399,30 @@
   background: #f3f4f6;
   margin: 4px 6px;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  .title-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .task-actions {
+    opacity: 1; /* Always show on touch devices */
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+  .card-links-block .links-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .task-card {
+    position: relative;
+    padding: 16px;
+  }
+  .card-header-row {
+    padding-right: 60px; /* Make room for absolute task-actions */
+  }
+}
