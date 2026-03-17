@@ -48,11 +48,23 @@ export class DashboardComponent implements OnInit {
   }
 
   loadCompletions(): void {
+    this.progressService.getUserCompletions(this.currentUserId).subscribe({
+      next: (completedIds) => {
+        this.assignments = this.assignments.map(a => ({
+          ...a,
+          completed: completedIds.includes(a.id)
+        }));
+      },
+      error: (err) => {
+        console.error('Failed to load user completions', err);
+      }
+    });
+
     this.progressService.getStats(this.currentUserId).subscribe({
       next: (stats) => {
         console.log("Stats loaded:", stats);
       }
-    })
+    });
   }
 
   get filteredAssignments(): Assignment[] {

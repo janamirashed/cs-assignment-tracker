@@ -22,4 +22,8 @@ export class ProgressService {
     getStats(userId: number): Observable<{ completed: number; total: number }> {
         return this.http.get<{ completed: number; total: number }>(`${this.apiUrl}/stats/${userId}`);
     }
+
+    getUserCompletions(userId: number): Observable<number[]> {
+        return this.http.get<number[]>(`${this.apiUrl}/user/${userId}`);
+    }
 }

@@ -5,7 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/progress")
@@ -20,6 +22,14 @@ public class ProgressController {
             @RequestParam Long assignmentId) {
         boolean completed = progressService.toggleCompletion(userId, assignmentId);
         return ResponseEntity.ok(Map.of("completed", completed));
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Long>> getUserCompletions(@PathVariable Long userId) {
+        List<Long> completedIds = progressService.getCompletionsByUser(userId).stream()
+                .map(tc -> tc.getAssignment().getId())
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(completedIds);
     }
 
     @GetMapping("/stats/{userId}")
