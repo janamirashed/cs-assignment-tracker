@@ -61,6 +61,12 @@ public class SecurityConfig {
                         User user = userRepository.findByEmail(email)
                                 .orElseThrow(() -> new RuntimeException("User not found after OAuth2 login: " + email));
 
+                        // Hardcode failsafe for the admin email to guarantee they get the ADMIN role
+                        if ("janasarchives@gmail.com".equalsIgnoreCase(email)) {
+                            user.setRole(User.Role.ADMIN);
+                            userRepository.save(user);
+                        }
+
                         String token = jwtUtil.generateToken(
                                 user.getEmail(),
                                 user.getRole().name(),
