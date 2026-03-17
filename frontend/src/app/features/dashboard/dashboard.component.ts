@@ -69,11 +69,31 @@ export class DashboardComponent implements OnInit {
 
   get filteredAssignments(): Assignment[] {
     const q = this.searchQuery.toLowerCase().trim();
-    if (!q) return this.assignments;
-    return this.assignments.filter(a =>
-      a.title.toLowerCase().includes(q) ||
-      (a.courseName && a.courseName.toLowerCase().includes(q))
-    );
+    let result = [...this.assignments]; // clone to avoid mutating original during sort
+
+    if (q) {
+      result = result.filter(a =>
+        a.title.toLowerCase().includes(q) ||
+        (a.courseName && a.courseName.toLowerCase().includes(q))
+      );
+    }
+
+    // Sort by due date (from soonest to furthest)
+    return result.sort((a, b) => {
+      const timeA = a.dueDate ? new Date(a.dueDate).getTime() : Infinity;
+      const timeB = b.dueDate ? new Date(b.dueDate).getTime() : Infinity;
+
+      // Handle invalid dates (push to end)
+      const valA = isNaN(timeA) ? Infinity : timeA;
+      const valB = isNaN(timeB) ? Infinity : timeB;
+
+      if (valA !== valB) {
+        return valA - valB;
+      }
+      
+      // Secondary sort by ID for stability
+      return (a.id || 0) - (b.id || 0);
+    });
   }
 
   get completedCount(): number { return this.assignments.filter(a => a.completed).length; }
