@@ -33,6 +33,9 @@ public class SecurityConfig {
     @Value("${app.oauth2.redirect-uri}")
     private String frontendRedirectUri;
 
+    @Value("${app.cors.allowed-origins}")
+    private String frontendBaseUrl;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -70,13 +73,13 @@ public class SecurityConfig {
                         response.sendRedirect(frontendRedirectUri + "?token=" + token);
                     } catch (Exception e) {
                         log.error("Error in OAuth2 success handler", e);
-                        response.sendRedirect(frontendRedirectUri.replace("/oauth2/callback", "/login")
+                        response.sendRedirect(frontendBaseUrl + "/cs-assignment-tracker/#/login"
                                 + "?error=" + URLEncoder.encode(e.getMessage(), StandardCharsets.UTF_8));
                     }
                 })
                 .failureHandler((request, response, exception) -> {
                     log.error("OAuth2 login failure: {}", exception.getMessage(), exception);
-                    response.sendRedirect(frontendRedirectUri.replace("/oauth2/callback", "/login")
+                    response.sendRedirect(frontendBaseUrl + "/cs-assignment-tracker/#/login"
                             + "?error=" + URLEncoder.encode("Authentication failed: " + exception.getMessage(), StandardCharsets.UTF_8));
                 })
             )
