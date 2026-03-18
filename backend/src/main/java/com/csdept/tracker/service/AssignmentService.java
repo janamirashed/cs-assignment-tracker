@@ -2,8 +2,10 @@ package com.csdept.tracker.service;
 
 import com.csdept.tracker.entity.Assignment;
 import com.csdept.tracker.repository.AssignmentRepository;
+import com.csdept.tracker.repository.TaskCompletionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
 public class AssignmentService {
 
     private final AssignmentRepository assignmentRepository;
+    private final TaskCompletionRepository taskCompletionRepository;
 
     public List<Assignment> getAllAssignments() {
         return assignmentRepository.findAll();
@@ -40,8 +43,10 @@ public class AssignmentService {
         return assignmentRepository.save(existing);
     }
 
+    @Transactional
     public void deleteAssignment(Long id) {
         Assignment existing = getAssignmentById(id);
+        taskCompletionRepository.deleteAll(taskCompletionRepository.findByAssignmentId(id));
         assignmentRepository.delete(existing);
     }
 }
