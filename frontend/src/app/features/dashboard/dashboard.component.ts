@@ -192,17 +192,33 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  showDeleteModal = false;
+  assignmentIdToDelete: number | null = null;
+
   deleteAssignment(id: number): void {
-    if (confirm('Are you sure you want to delete this assignment?')) {
-      this.assignmentService.deleteAssignment(id).subscribe({
-        next: () => {
-          this.assignments = this.assignments.filter(a => a.id !== id);
-          this.displayToast('Assignment deleted.', 'success');
-        },
-        error: (err) => {
-          this.displayToast('Error deleting assignment', 'error');
-        }
-      });
-    }
+    this.assignmentIdToDelete = id;
+    this.showDeleteModal = true;
+  }
+
+  cancelDelete(): void {
+    this.showDeleteModal = false;
+    this.assignmentIdToDelete = null;
+  }
+
+  confirmDelete(): void {
+    if (this.assignmentIdToDelete === null) return;
+    const id = this.assignmentIdToDelete;
+    
+    this.assignmentService.deleteAssignment(id).subscribe({
+      next: () => {
+        this.assignments = this.assignments.filter(a => a.id !== id);
+        this.displayToast('Assignment deleted.', 'success');
+        this.cancelDelete();
+      },
+      error: (err) => {
+        this.displayToast('Error deleting assignment', 'error');
+        this.cancelDelete();
+      }
+    });
   }
 }
