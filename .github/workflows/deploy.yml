@@ -26,8 +26,11 @@ jobs:
     - name: Build Angular app
       run: cd frontend && npm run build
     
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./frontend/dist/cs-assignment-tracker/browser
+        path: './frontend/dist/cs-assignment-tracker/browser'
+    
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
