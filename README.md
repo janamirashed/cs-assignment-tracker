@@ -6,7 +6,7 @@ A simple, clean app that helps CS students track and manage their assignments in
 
 This project combines the ease of a Google Sheet with the power of a web app. It's designed to make assignment tracking less stressful and more straightforward—no complicated menus or confusing buttons.
 
-![CS Assignment Tracker Interface](frontend/src/assets/main_interface.png)
+![CS Assignment Tracker Interface](frontend/src/assets/main_interface1.png)
 
 ## Built For Everyone
   
