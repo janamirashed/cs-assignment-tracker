@@ -4,7 +4,9 @@
   flex-direction: column;
 }
 
-.done-section { margin-top: 36px; }
+.done-section {
+  margin-top: 36px;
+}
 
 /* Section Header */
 .section-header {
@@ -12,6 +14,35 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+}
+
+.section-header-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.15s;
+  border-radius: 8px;
+  padding: 6px;
+  margin-left: -6px;
+}
+
+.section-header-button:hover {
+  background: #f3f4f6;
+}
+
+.collapse-icon {
+  flex-shrink: 0;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+  margin-right: 8px;
+}
+
+.collapse-icon.expanded {
+  transform: rotate(180deg);
 }
 
 .section-title-group {
@@ -37,7 +68,10 @@
   border-radius: 999px;
 }
 
-.count-badge.green { background: #dcfce7; color: #16a34a; }
+.count-badge.green {
+  background: #dcfce7;
+  color: #16a34a;
+}
 
 /* Add Button */
 .add-btn {
@@ -56,7 +90,9 @@
   font-family: 'Inter', sans-serif;
 }
 
-.add-btn:hover { background: #eff6ff; }
+.add-btn:hover {
+  background: #eff6ff;
+}
 
 /* Task List */
 .task-list {
@@ -75,7 +111,7 @@
 }
 
 .task-card:hover {
-  box-shadow: 0 8px 24px -8px rgba(0,0,0,0.09);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.09);
   transform: translateY(-1px);
 }
 
@@ -116,14 +152,20 @@
   padding: 0;
 }
 
-.checkbox:hover { border-color: #3b82f6; }
+.checkbox:hover {
+  border-color: #3b82f6;
+}
 
 .checkbox.checked {
   background: #22c55e;
   border-color: #22c55e;
 }
 
-.check-icon { width: 12px; height: 12px; color: white; }
+.check-icon {
+  width: 12px;
+  height: 12px;
+  color: white;
+}
 
 /* Header Row */
 .card-header-row {
@@ -144,12 +186,35 @@
   text-transform: uppercase;
 }
 
-.course-tag.blue   { background: #dbeafe; color: #1d4ed8; }
-.course-tag.purple { background: #ede9fe; color: #6d28d9; }
-.course-tag.green  { background: #dcfce7; color: #15803d; }
-.course-tag.amber  { background: #fef3c7; color: #b45309; }
-.course-tag.rose   { background: #ffe4e6; color: #be123c; }
-.course-tag.teal   { background: #ccfbf1; color: #0f766e; }
+.course-tag.blue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.course-tag.purple {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.course-tag.green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.course-tag.amber {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.course-tag.rose {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.course-tag.teal {
+  background: #ccfbf1;
+  color: #0f766e;
+}
 
 /* Due Date */
 .due-date {
@@ -186,12 +251,14 @@
 .task-actions {
   display: flex;
   gap: 4px;
-  opacity: 0; /* hidden by default */
+  opacity: 0;
+  /* hidden by default */
   transition: opacity 0.2s;
 }
 
 .task-card:hover .task-actions {
-  opacity: 1; /* show on card hover */
+  opacity: 1;
+  /* show on card hover */
 }
 
 .action-btn {
@@ -240,7 +307,10 @@
   padding: 0;
 }
 
-.card-comment svg { flex-shrink: 0; margin-top: 1px; }
+.card-comment svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 /* Links Block */
 .card-links-block {
@@ -298,13 +368,24 @@
 }
 
 .chip.form:hover,
-.chip.doc:hover { opacity: 0.8; transform: translateY(-1px); }
+.chip.doc:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
 
 /* Submission form */
-.chip.form { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; }
+.chip.form {
+  background: #eff6ff;
+  color: #2563eb;
+  border-color: #bfdbfe;
+}
 
 /* Requirements PDF */
-.chip.doc  { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+.chip.doc {
+  background: #fff7ed;
+  color: #c2410c;
+  border-color: #fed7aa;
+}
 
 /* MS Teams — light purple badge */
 .chip.teams {
@@ -338,7 +419,9 @@
   border-radius: 16px;
 }
 
-.empty-state p { font-size: 0.9rem; }
+.empty-state p {
+  font-size: 0.9rem;
+}
 
 /* Context Menu */
 .context-menu-overlay {
@@ -355,13 +438,20 @@
   border-radius: 12px;
   padding: 6px;
   min-width: 200px;
-  box-shadow: 0 12px 36px -8px rgba(0,0,0,0.16), 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.06);
   animation: contextFadeIn 0.12s ease;
 }
 
 @keyframes contextFadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .context-menu-item {
@@ -407,22 +497,28 @@
     gap: 8px;
     align-items: flex-start;
   }
+
   .task-actions {
-    opacity: 1; /* Always show on touch devices */
+    opacity: 1;
+    /* Always show on touch devices */
     position: absolute;
     top: 16px;
     right: 16px;
   }
+
   .card-links-block .links-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
   }
+
   .task-card {
     position: relative;
     padding: 16px;
   }
+
   .card-header-row {
-    padding-right: 60px; /* Make room for absolute task-actions */
+    padding-right: 60px;
+    /* Make room for absolute task-actions */
   }
 }

@@ -43,12 +43,15 @@
             <div class="task-actions" *ngIf="isAdmin">
               <button class="action-btn edit-btn" (click)="onEdit(task)" aria-label="Edit assignment" title="Edit">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                 </svg>
               </button>
-              <button class="action-btn delete-btn" (click)="onDelete(task.id)" aria-label="Delete assignment" title="Delete">
+              <button class="action-btn delete-btn" (click)="onDelete(task.id)" aria-label="Delete assignment"
+                title="Delete">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg>
               </button>
             </div>
@@ -133,13 +136,19 @@
 <!-- completed tasks -->
 <section class="tasks-section done-section" id="done">
   <div class="section-header">
-    <div class="section-title-group">
-      <h2>Completed</h2>
-      <span class="count-badge green">{{ completed.length }}</span>
-    </div>
+    <button class="section-header-button" (click)="toggleCompletedSection()" aria-expanded="completedExpanded">
+      <div class="section-title-group">
+        <svg class="collapse-icon" [class.expanded]="completedExpanded" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+        <h2>Completed</h2>
+        <span class="count-badge green">{{ completed.length }}</span>
+      </div>
+    </button>
   </div>
 
-  <div class="task-list" *ngIf="completed.length > 0; else noDone">
+  <div class="task-list" *ngIf="completedExpanded && completed.length > 0">
     <div class="task-card completed" *ngFor="let task of completed" (contextmenu)="openContextMenu($event, task)">
       <div class="card-body">
         <button class="checkbox checked" [attr.id]="'check-done-' + task.id" (click)="toggle(task.id)"
@@ -166,12 +175,15 @@
             <div class="task-actions" *ngIf="isAdmin">
               <button class="action-btn edit-btn" (click)="onEdit(task)" aria-label="Edit assignment" title="Edit">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                 </svg>
               </button>
-              <button class="action-btn delete-btn" (click)="onDelete(task.id)" aria-label="Delete assignment" title="Delete">
+              <button class="action-btn delete-btn" (click)="onDelete(task.id)" aria-label="Delete assignment"
+                title="Delete">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg>
               </button>
             </div>
@@ -193,17 +205,21 @@
 </section>
 
 <!-- context menu -->
-<div class="context-menu-overlay" *ngIf="contextMenuVisible" (click)="closeContextMenu()" (contextmenu)="$event.preventDefault(); closeContextMenu()"></div>
-<div class="context-menu" *ngIf="contextMenuVisible && contextMenuTask" [style.left.px]="contextMenuX" [style.top.px]="contextMenuY" (click)="$event.stopPropagation()">
-  
+<div class="context-menu-overlay" *ngIf="contextMenuVisible" (click)="closeContextMenu()"
+  (contextmenu)="$event.preventDefault(); closeContextMenu()"></div>
+<div class="context-menu" *ngIf="contextMenuVisible && contextMenuTask" [style.left.px]="contextMenuX"
+  [style.top.px]="contextMenuY" (click)="$event.stopPropagation()">
+
   <!-- toggle complete — for all users -->
-  <button class="context-menu-item" *ngIf="!contextMenuTask.completed" (click)="toggle(contextMenuTask.id); closeContextMenu()">
+  <button class="context-menu-item" *ngIf="!contextMenuTask.completed"
+    (click)="toggle(contextMenuTask.id); closeContextMenu()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="15" height="15">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
     </svg>
     Mark as Completed
   </button>
-  <button class="context-menu-item" *ngIf="contextMenuTask.completed" (click)="toggle(contextMenuTask.id); closeContextMenu()">
+  <button class="context-menu-item" *ngIf="contextMenuTask.completed"
+    (click)="toggle(contextMenuTask.id); closeContextMenu()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="15" height="15">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
     </svg>
@@ -215,13 +231,15 @@
     <div class="context-menu-divider"></div>
     <button class="context-menu-item" (click)="onEdit(contextMenuTask); closeContextMenu()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="15" height="15">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
       </svg>
       Edit Assignment
     </button>
     <button class="context-menu-item danger" (click)="onDelete(contextMenuTask.id); closeContextMenu()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="15" height="15">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
       </svg>
       Delete Assignment
     </button>

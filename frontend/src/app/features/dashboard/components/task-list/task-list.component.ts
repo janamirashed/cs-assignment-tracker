@@ -18,11 +18,11 @@ export class TaskListComponent {
   @Output() editAssignment = new EventEmitter<Assignment>();
   @Output() deleteAssignment = new EventEmitter<number>();
 
-  // Context menu state
   contextMenuVisible = false;
   contextMenuX = 0;
   contextMenuY = 0;
   contextMenuTask: Assignment | null = null;
+  completedExpanded = false;
 
   get upcoming(): Assignment[] {
     return this.assignments.filter(a => !a.completed);
@@ -48,7 +48,6 @@ export class TaskListComponent {
     this.deleteAssignment.emit(id);
   }
 
-  // Context menu
   openContextMenu(event: MouseEvent, task: Assignment): void {
     event.preventDefault();
     event.stopPropagation();
@@ -66,5 +65,9 @@ export class TaskListComponent {
   @HostListener('document:click')
   onDocumentClick(): void {
     this.closeContextMenu();
+  }
+
+  toggleCompletedSection(): void {
+    this.completedExpanded = !this.completedExpanded;
   }
 }
