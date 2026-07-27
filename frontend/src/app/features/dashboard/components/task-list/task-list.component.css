@@ -73,6 +73,11 @@
   color: #16a34a;
 }
 
+.count-badge.red {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
 /* Add Button */
 .add-btn {
   display: flex;
