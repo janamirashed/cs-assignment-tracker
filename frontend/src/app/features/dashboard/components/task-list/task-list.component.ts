@@ -25,7 +25,11 @@ export class TaskListComponent {
   completedExpanded = false;
 
   get upcoming(): Assignment[] {
-    return this.assignments.filter(a => !a.completed);
+    return this.assignments.filter(a => !a.completed && new Date(a.dueDate) > new Date());
+  }
+
+  get overdue(): Assignment[] {
+    return this.assignments.filter(a => !a.completed && new Date(a.dueDate) < new Date());
   }
 
   get completed(): Assignment[] {

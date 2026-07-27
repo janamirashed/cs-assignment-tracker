@@ -133,6 +133,117 @@
   </ng-template>
 </section>
 
+<!-- overdue tasks -->
+<section class="tasks-section overdue-section" id="overdue">
+  <div class="section-header">
+    <div class="section-title-group">
+      <h1>Overdue Assignments</h1>
+      <span class="count-badge red">{{ overdue.length }}</span>
+    </div>
+  </div>
+
+  <div class="task-list" *ngIf="overdue.length > 0; else noOverdue">
+    <div class="task-card" *ngFor="let task of overdue" (contextmenu)="openContextMenu($event, task)">
+      <div class="card-body">
+        <button class="checkbox" [attr.id]="'check-' + task.id" (click)="toggle(task.id)" aria-label="Mark complete">
+          <span class="checkbox-inner"></span>
+        </button>
+        <div class="card-meta">
+          <div class="card-header-row">
+            <span class="course-tag" [ngClass]="task.courseColor">
+              {{ task.courseName }}
+            </span>
+            <span class="due-date overdue-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="13" height="13">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              {{ task.dueDate }}
+            </span>
+          </div>
+          <div class="title-row">
+            <h3 class="card-title">{{ task.title }}</h3>
+            <div class="task-actions" *ngIf="isAdmin">
+              <button class="action-btn edit-btn" (click)="onEdit(task)" aria-label="Edit assignment" title="Edit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </button>
+              <button class="action-btn delete-btn" (click)="onDelete(task.id)" aria-label="Delete assignment"
+                title="Delete">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <p class="card-comment" *ngIf="task.comment">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="13" height="13"
+              style="flex-shrink:0; margin-top:1px">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+            </svg>
+            {{ task.comment }}
+          </p>
+          <div class="card-links-block">
+            <div class="links-row" *ngIf="task.requirementUrl">
+              <span class="links-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="12" height="12">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                Requirements
+              </span>
+              <a [href]="task.requirementUrl" target="_blank" class="chip doc" id="req-overdue-{{task.id}}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="12" height="12">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                View PDF
+              </a>
+            </div>
+            <div class="links-row">
+              <span class="links-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="12" height="12">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+                Submission
+              </span>
+              <div class="links-chips">
+                <a *ngIf="task.submissionType === 'form' || task.submissionType === 'both'" [href]="task.submissionUrl"
+                  target="_blank" class="chip form" [id]="'submit-form-overdue-' + task.id">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="12" height="12">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 022 2h2a2 2 0 022-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                  Submit Form
+                </a>
+                <span *ngIf="task.submissionType === 'teams' || task.submissionType === 'both'" class="chip teams"
+                  [id]="'submit-teams-overdue-' + task.id">
+                  MS Teams
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noOverdue>
+    <div class="empty-state">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="40" height="40">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p>No overdue assignments.</p>
+    </div>
+  </ng-template>
+</section>
+
 <!-- completed tasks -->
 <section class="tasks-section done-section" id="done">
   <div class="section-header">
