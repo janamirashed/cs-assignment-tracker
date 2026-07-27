@@ -138,12 +138,12 @@
   <div class="section-header">
     <button class="section-header-button" (click)="toggleCompletedSection()" aria-expanded="completedExpanded">
       <div class="section-title-group">
+        <h2>Completed</h2>
+        <span class="count-badge green">{{ completed.length }}</span>
         <svg class="collapse-icon" [class.expanded]="completedExpanded" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" width="20" height="20">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
-        <h2>Completed</h2>
-        <span class="count-badge green">{{ completed.length }}</span>
       </div>
     </button>
   </div>
