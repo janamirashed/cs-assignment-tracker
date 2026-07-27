@@ -12,9 +12,11 @@
 backend/target/
 
 # Frontend (Angular/Node)
-frontend/node_modules/
+node_modules/
+**/node_modules/
 frontend/dist/
 frontend/.angular/
+.angular/
 
 # Environment & Secrets
 backend/src/main/resources/application.properties
