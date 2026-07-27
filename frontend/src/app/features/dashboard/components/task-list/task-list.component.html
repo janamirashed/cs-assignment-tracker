@@ -133,6 +133,77 @@
   </ng-template>
 </section>
 
+<!-- completed tasks -->
+<section class="tasks-section done-section" id="done">
+  <div class="section-header">
+    <button class="section-header-button" (click)="toggleCompletedSection()" aria-expanded="completedExpanded">
+      <div class="section-title-group">
+        <svg class="collapse-icon" [class.expanded]="completedExpanded" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+        <h2>Completed</h2>
+        <span class="count-badge green">{{ completed.length }}</span>
+      </div>
+    </button>
+  </div>
+
+  <div class="task-list" *ngIf="completedExpanded && completed.length > 0">
+    <div class="task-card completed" *ngFor="let task of completed" (contextmenu)="openContextMenu($event, task)">
+      <div class="card-body">
+        <button class="checkbox checked" [attr.id]="'check-done-' + task.id" (click)="toggle(task.id)"
+          aria-label="Mark incomplete">
+          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          </svg>
+        </button>
+        <div class="card-meta">
+          <div class="card-header-row">
+            <span class="course-tag" [ngClass]="task.courseColor">
+              {{ task.courseName }}
+            </span>
+            <span class="completed-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="13" height="13">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Completed
+            </span>
+          </div>
+          <div class="title-row">
+            <h3 class="card-title strikethrough">{{ task.title }}</h3>
+            <div class="task-actions" *ngIf="isAdmin">
+              <button class="action-btn edit-btn" (click)="onEdit(task)" aria-label="Edit assignment" title="Edit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </button>
+              <button class="action-btn delete-btn" (click)="onDelete(task.id)" aria-label="Delete assignment"
+                title="Delete">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noDone>
+    <div class="empty-state">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="40" height="40">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p>No completed assignments yet. Keep going!</p>
+    </div>
+  </ng-template>
+</section>
+
 <!-- overdue tasks -->
 <section class="tasks-section overdue-section" id="overdue">
   <div class="section-header">
@@ -240,77 +311,6 @@
           d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
       <p>No overdue assignments.</p>
-    </div>
-  </ng-template>
-</section>
-
-<!-- completed tasks -->
-<section class="tasks-section done-section" id="done">
-  <div class="section-header">
-    <button class="section-header-button" (click)="toggleCompletedSection()" aria-expanded="completedExpanded">
-      <div class="section-title-group">
-        <svg class="collapse-icon" [class.expanded]="completedExpanded" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" width="20" height="20">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-        <h2>Completed</h2>
-        <span class="count-badge green">{{ completed.length }}</span>
-      </div>
-    </button>
-  </div>
-
-  <div class="task-list" *ngIf="completedExpanded && completed.length > 0">
-    <div class="task-card completed" *ngFor="let task of completed" (contextmenu)="openContextMenu($event, task)">
-      <div class="card-body">
-        <button class="checkbox checked" [attr.id]="'check-done-' + task.id" (click)="toggle(task.id)"
-          aria-label="Mark incomplete">
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-          </svg>
-        </button>
-        <div class="card-meta">
-          <div class="card-header-row">
-            <span class="course-tag" [ngClass]="task.courseColor">
-              {{ task.courseName }}
-            </span>
-            <span class="completed-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="13" height="13">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Completed
-            </span>
-          </div>
-          <div class="title-row">
-            <h3 class="card-title strikethrough">{{ task.title }}</h3>
-            <div class="task-actions" *ngIf="isAdmin">
-              <button class="action-btn edit-btn" (click)="onEdit(task)" aria-label="Edit assignment" title="Edit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-              </button>
-              <button class="action-btn delete-btn" (click)="onDelete(task.id)" aria-label="Delete assignment"
-                title="Delete">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <ng-template #noDone>
-    <div class="empty-state">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="40" height="40">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      <p>No completed assignments yet. Keep going!</p>
     </div>
   </ng-template>
 </section>
