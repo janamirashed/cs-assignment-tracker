@@ -154,3 +154,28 @@ input, textarea, select {
 ::-webkit-scrollbar-thumb { background: var(--gray-400); border-radius: var(--radius-full); }
 ::-webkit-scrollbar-thumb:hover { background: var(--gray-500); }
 
+/* ===== Dark Mode: Progress Chart Stat Pills ===== */
+/* Must live in global CSS to pierce Angular component encapsulation */
+body.dark-mode .stat-pill {
+  transition: background-color 0.2s ease;
+}
+
+body.dark-mode .stat-pill:has(.stat-value.amber) {
+  background: rgba(251, 191, 36,  0.12);
+}
+body.dark-mode .stat-pill:has(.stat-value.rose) {
+  background: rgba(244, 63,  94,  0.12);
+}
+body.dark-mode .stat-pill:has(.stat-value.green) {
+  background: rgba(52,  211, 153, 0.12);
+}
+body.dark-mode .stat-pill:has(.stat-value.blue) {
+  background: rgba(59,  130, 246, 0.12);
+}
+
+body.dark-mode .stat-value.amber { color: #fbbf24; }
+body.dark-mode .stat-value.rose  { color: #fb7185; }
+body.dark-mode .stat-value.green { color: #34d399; }
+body.dark-mode .stat-value.blue  { color: #60a5fa; }
+
+
