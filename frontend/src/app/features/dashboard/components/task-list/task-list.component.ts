@@ -24,17 +24,39 @@ export class TaskListComponent {
   contextMenuTask: Assignment | null = null;
   completedExpanded = false;
 
+  private parseDate(dateStr: string | undefined): number {
+    if (!dateStr) return NaN;
+    // Clean ordinal suffixes e.g., "April 9th 23:59" -> "April 9 23:59"
+    const cleanDate = dateStr.replace(/(\d+)(st|nd|rd|th)/gi, '$1');
+    const time = new Date(cleanDate).getTime();
+    return isNaN(time) ? NaN : time;
+  }
+
   get upcoming(): Assignment[] {
-    return this.assignments.filter(a => !a.completed && new Date(a.dueDate) > new Date());
+    const now = Date.now();
+    return this.assignments.filter(a => {
+      if (a.completed) return false;
+      const time = this.parseDate(a.dueDate);
+      if (!isNaN(time) && time < now) {
+        return false;
+      }
+      return true;
+    });
   }
 
   get overdue(): Assignment[] {
-    return this.assignments.filter(a => !a.completed && new Date(a.dueDate) < new Date());
+    const now = Date.now();
+    return this.assignments.filter(a => {
+      if (a.completed) return false;
+      const time = this.parseDate(a.dueDate);
+      return !isNaN(time) && time < now;
+    });
   }
 
   get completed(): Assignment[] {
     return this.assignments.filter(a => a.completed);
   }
+
 
   toggle(id: number): void {
     this.toggleComplete.emit(id);
