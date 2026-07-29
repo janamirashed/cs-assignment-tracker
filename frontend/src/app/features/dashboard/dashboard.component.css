@@ -1,8 +1,9 @@
 :host {
   display: block;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f7f8fb;
+  background: var(--bg-app);
   min-height: 100vh;
+  transition: background-color 0.2s ease;
 }
 
 .dashboard-wrapper {
@@ -44,7 +45,7 @@
 .section-header-sm h2 {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -52,7 +53,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(17, 24, 39, 0.4);
+  background: var(--modal-overlay-bg);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 999;
@@ -64,13 +65,14 @@
 }
 
 .assignment-modal {
-  background: #ffffff;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 20px;
   width: 100%;
   max-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 20px 60px -10px rgba(0,0,0,0.18);
+  box-shadow: var(--shadow-lg);
   animation: slideUp 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -91,10 +93,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 24px 28px 16px;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
-  background: #ffffff;
+  background: var(--bg-card);
   z-index: 2;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -103,7 +105,7 @@
 .modal-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin: 0;
   font-family: 'Inter', sans-serif;
 }
@@ -112,7 +114,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #9ca3af;
+  color: var(--text-faint);
   border-radius: 8px;
   padding: 6px;
   display: flex;
@@ -122,8 +124,8 @@
 }
 
 .modal-close:hover {
-  background: #f3f4f6;
-  color: #374151;
+  background: var(--bg-hover);
+  color: var(--text-secondary);
 }
 
 .modal-form {
@@ -152,7 +154,7 @@
 .form-group label {
   font-size: 0.82rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--text-secondary);
   font-family: 'Inter', sans-serif;
 }
 
@@ -164,23 +166,23 @@
 .form-group input,
 .form-group select,
 .form-group textarea {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
   border-radius: 10px;
   padding: 10px 14px;
   font-size: 0.9rem;
-  color: #111827;
+  color: var(--text-primary);
   font-family: 'Inter', sans-serif;
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  background: #ffffff;
-  border-color: #93c5fd;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  background: var(--bg-card);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
 .form-group textarea {
@@ -208,13 +210,13 @@
 
 .btn-cancel {
   background: transparent;
-  border: 1.5px solid #e5e7eb;
-  color: #4b5563;
+  border: 1.5px solid var(--border-input);
+  color: var(--text-secondary);
 }
 
 .btn-cancel:hover {
-  background: #f9fafb;
-  border-color: #d1d5db;
+  background: var(--bg-hover);
+  border-color: var(--text-muted);
 }
 
 .btn-primary {
@@ -297,3 +299,4 @@
     gap: 16px;
   }
 }
+

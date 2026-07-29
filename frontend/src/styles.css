@@ -53,15 +53,79 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 9999px;
+
+  /* Dynamic Theme Tokens (Light Mode Default) */
+  --bg-app: #f7f8fb;
+  --bg-navbar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-completed: #f9fffe;
+  --border-card-completed: #d1fae5;
+  --bg-subtle: #f9fafb;
+  --bg-hover: #f3f4f6;
+  --bg-input: #f9fafb;
+
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --text-faint: #9ca3af;
+
+  --border-color: #f0f1f5;
+  --border-input: #e5e7eb;
+  --border-subtle: #e5e7eb;
+  --modal-overlay-bg: rgba(17, 24, 39, 0.4);
+  --chip-form-bg: #eff6ff;
+  --chip-form-text: #2563eb;
+  --chip-form-border: #bfdbfe;
+  --chip-doc-bg: #fff7ed;
+  --chip-doc-text: #c2410c;
+  --chip-doc-border: #fed7aa;
+  --chip-teams-bg: #ede9fe;
+  --chip-teams-text: #5b21b6;
+  --chip-teams-border: #c4b5fd;
+}
+
+body.dark-mode {
+  --bg-app: #0b0f19;
+  --bg-navbar: #111827;
+  --bg-card: #1f2937;
+  --bg-card-completed: #132422;
+  --border-card-completed: #059669;
+  --bg-subtle: #182232;
+  --bg-hover: #374151;
+  --bg-input: #111827;
+
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-muted: #9ca3af;
+  --text-faint: #6b7280;
+
+  --border-color: #374151;
+  --border-input: #374151;
+  --border-subtle: #374151;
+  --modal-overlay-bg: rgba(0, 0, 0, 0.65);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.5);
+
+  --chip-form-bg: #1e3a8a;
+  --chip-form-text: #93c5fd;
+  --chip-form-border: #2563eb;
+  --chip-doc-bg: #451a03;
+  --chip-doc-text: #fdba74;
+  --chip-doc-border: #9a3412;
+  --chip-teams-bg: #3b0764;
+  --chip-teams-text: #ddd6fe;
+  --chip-teams-border: #6b21a8;
 }
 
 html, body {
   height: 100%;
   font-family: var(--font-sans);
-  background-color: #f7f8fb;
-  color: var(--gray-900);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 a {
@@ -80,5 +144,6 @@ input, textarea, select {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: var(--radius-full); }
-::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+::-webkit-scrollbar-thumb { background: var(--gray-400); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--gray-500); }
+

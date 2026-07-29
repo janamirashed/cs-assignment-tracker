@@ -1,11 +1,12 @@
 .progress-panel {
-  background: #ffffff;
-  border: 1px solid #f0f1f5;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 24px 20px;
   display: flex;
   flex-direction: column;
   gap: 18px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* Donut */
@@ -20,14 +21,14 @@
 .donut-pct {
   font-size: 22px;
   font-weight: 800;
-  fill: #111827;
+  fill: var(--text-primary);
   font-family: 'Inter', sans-serif;
 }
 
 .donut-label {
   font-size: 6.5px;
   font-weight: 600;
-  fill: #9ca3af;
+  fill: var(--text-faint);
   letter-spacing: 0.08em;
   font-family: 'Inter', sans-serif;
 }
@@ -53,13 +54,13 @@
   flex-shrink: 0;
 }
 
-.legend-dot.green  { background: #a7f3d0; }
-.legend-dot.purple { background: #c4b5fd; }
+.legend-dot.green  { background: #34d399; }
+.legend-dot.purple { background: #a78bfa; }
 
 .legend-name {
   flex: 1;
   font-size: 0.85rem;
-  color: #374151;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -68,7 +69,7 @@
 .legend-count.purple-text { color: #8b5cf6; }
 
 /* Divider */
-.divider { height: 1px; background: #f3f4f6; }
+.divider { height: 1px; background: var(--border-color); }
 
 /* Stat Pills */
 .stat-pills {
@@ -78,18 +79,19 @@
 }
 
 .stat-pill {
-  background: #f9fafb;
+  background: var(--bg-subtle);
   border-radius: 12px;
   padding: 14px 12px;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  transition: background-color 0.2s ease;
 }
 
 .stat-label {
   font-size: 0.65rem;
   font-weight: 700;
-  color: #9ca3af;
+  color: var(--text-faint);
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -102,4 +104,5 @@
 
 .stat-value.amber { color: #f59e0b; }
 .stat-value.blue  { color: #3b82f6; }
+
 
