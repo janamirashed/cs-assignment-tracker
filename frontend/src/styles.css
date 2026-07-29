@@ -107,6 +107,13 @@ body.dark-mode {
   --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
   --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.5);
 
+  /* Stat pill tinted backgrounds (dark mode) */
+  --pill-amber-bg:  rgba(251, 191, 36,  0.12);
+  --pill-rose-bg:   rgba(244, 63,  94,  0.12);
+  --pill-green-bg:  rgba(52,  211, 153, 0.12);
+  --pill-blue-bg:   rgba(59,  130, 246, 0.12);
+
+
   --chip-form-bg: #1e3a8a;
   --chip-form-text: #93c5fd;
   --chip-form-border: #2563eb;
