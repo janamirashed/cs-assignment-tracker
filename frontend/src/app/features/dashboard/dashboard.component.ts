@@ -95,13 +95,20 @@ export class DashboardComponent implements OnInit {
   private parseDate(dateStr: string | undefined): number {
     if (!dateStr) return Infinity;
     
-    // Remove ordinal suffixes (st, nd, rd, th) from numbers
-    // e.g., "March 4th" -> "March 4", "1st Oct" -> "1 Oct"
-    const cleanDate = dateStr.replace(/(\d+)(st|nd|rd|th)/gi, '$1');
+    // Clean ordinal suffixes e.g., "August 9th 23:59" -> "August 9 23:59"
+    let cleanDate = dateStr.replace(/(\d+)(st|nd|rd|th)/gi, '$1').trim();
+
+    // If no 4-digit year is specified (e.g. "August 9 23:59"), append current year
+    if (!/\b20\d\d\b/.test(cleanDate)) {
+      const currentYear = new Date().getFullYear();
+      cleanDate = `${cleanDate} ${currentYear}`;
+    }
+
     const time = new Date(cleanDate).getTime();
     
     return isNaN(time) ? Infinity : time;
   }
+
 
   get completedCount(): number { return this.assignments.filter(a => a.completed).length; }
   get totalCount(): number { return this.assignments.length; }

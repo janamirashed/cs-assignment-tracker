@@ -26,11 +26,19 @@ export class TaskListComponent {
 
   private parseDate(dateStr: string | undefined): number {
     if (!dateStr) return NaN;
-    // Clean ordinal suffixes e.g., "April 9th 23:59" -> "April 9 23:59"
-    const cleanDate = dateStr.replace(/(\d+)(st|nd|rd|th)/gi, '$1');
+    // Clean ordinal suffixes e.g., "August 9th 23:59" -> "August 9 23:59"
+    let cleanDate = dateStr.replace(/(\d+)(st|nd|rd|th)/gi, '$1').trim();
+    
+    // If no 4-digit year is specified (e.g. "August 9 23:59"), append current year
+    if (!/\b20\d\d\b/.test(cleanDate)) {
+      const currentYear = new Date().getFullYear();
+      cleanDate = `${cleanDate} ${currentYear}`;
+    }
+
     const time = new Date(cleanDate).getTime();
     return isNaN(time) ? NaN : time;
   }
+
 
   get upcoming(): Assignment[] {
     const now = Date.now();
