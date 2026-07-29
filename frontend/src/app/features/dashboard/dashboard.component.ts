@@ -111,8 +111,26 @@ export class DashboardComponent implements OnInit {
 
 
   get completedCount(): number { return this.assignments.filter(a => a.completed).length; }
+  get upcomingCount(): number {
+    const now = Date.now();
+    return this.assignments.filter(a => {
+      if (a.completed) return false;
+      const time = this.parseDate(a.dueDate);
+      if (!isNaN(time) && time < now) return false;
+      return true;
+    }).length;
+  }
+  get overdueCount(): number {
+    const now = Date.now();
+    return this.assignments.filter(a => {
+      if (a.completed) return false;
+      const time = this.parseDate(a.dueDate);
+      return !isNaN(time) && time < now;
+    }).length;
+  }
   get totalCount(): number { return this.assignments.length; }
-  get dueSoonCount(): number { return this.assignments.filter(a => !a.completed).length; }
+  get dueSoonCount(): number { return this.upcomingCount; }
+
 
   toggleAssignment(id: number): void {
     const a = this.assignments.find(a => a.id === id);

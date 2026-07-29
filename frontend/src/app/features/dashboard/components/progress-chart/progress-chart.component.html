@@ -3,18 +3,25 @@
   <!-- donut chart -->
   <div class="donut-wrapper">
     <svg class="donut-svg" viewBox="0 0 120 120" aria-label="Progress donut chart">
-      <circle cx="60" cy="60" r="48" fill="none" stroke="#f3f4f6" stroke-width="12"/>
-      <!-- completed arc -->
+      <!-- background track -->
+      <circle cx="60" cy="60" r="48" fill="none" stroke="var(--border-color)" stroke-width="12"/>
+      <!-- completed arc (green) -->
       <circle
-        cx="60" cy="60" r="48" fill="none" stroke="#a7f3d0" stroke-width="12"
+        cx="60" cy="60" r="48" fill="none" stroke="#34d399" stroke-width="12"
         [attr.stroke-dasharray]="completedArc + ' ' + (CIRCUMFERENCE - completedArc)"
         stroke-dashoffset="0" stroke-linecap="round"
         transform="rotate(-90 60 60)"/>
-      <!-- not started arc -->
+      <!-- upcoming arc (purple) -->
       <circle
-        cx="60" cy="60" r="48" fill="none" stroke="#c4b5fd" stroke-width="12"
-        [attr.stroke-dasharray]="notStartedArc + ' ' + (CIRCUMFERENCE - notStartedArc)"
+        cx="60" cy="60" r="48" fill="none" stroke="#a78bfa" stroke-width="12"
+        [attr.stroke-dasharray]="upcomingArc + ' ' + (CIRCUMFERENCE - upcomingArc)"
         [attr.stroke-dashoffset]="'-' + completedArc"
+        stroke-linecap="round" transform="rotate(-90 60 60)"/>
+      <!-- overdue arc (rose/red) -->
+      <circle
+        cx="60" cy="60" r="48" fill="none" stroke="#fb7185" stroke-width="12"
+        [attr.stroke-dasharray]="overdueArc + ' ' + (CIRCUMFERENCE - overdueArc)"
+        [attr.stroke-dashoffset]="'-' + (completedArc + upcomingArc)"
         stroke-linecap="round" transform="rotate(-90 60 60)"/>
       <text x="60" y="55" text-anchor="middle" class="donut-pct">{{ percentage }}%</text>
       <text x="60" y="69" text-anchor="middle" class="donut-label">TOTAL DONE</text>
@@ -30,8 +37,13 @@
     </div>
     <div class="legend-row">
       <span class="legend-dot purple"></span>
-      <span class="legend-name">Not Started</span>
-      <span class="legend-count purple-text">{{ notStartedCount }}</span>
+      <span class="legend-name">Upcoming</span>
+      <span class="legend-count purple-text">{{ upcomingCount }}</span>
+    </div>
+    <div class="legend-row">
+      <span class="legend-dot rose"></span>
+      <span class="legend-name">Overdue</span>
+      <span class="legend-count rose-text">{{ overdueCount }}</span>
     </div>
   </div>
 
@@ -40,8 +52,16 @@
   <!-- stat pills -->
   <div class="stat-pills">
     <div class="stat-pill">
-      <span class="stat-label">DUE SOON</span>
-      <span class="stat-value amber">{{ dueSoonCount }}</span>
+      <span class="stat-label">UPCOMING</span>
+      <span class="stat-value amber">{{ upcomingCount }}</span>
+    </div>
+    <div class="stat-pill">
+      <span class="stat-label">OVERDUE</span>
+      <span class="stat-value rose">{{ overdueCount }}</span>
+    </div>
+    <div class="stat-pill">
+      <span class="stat-label">COMPLETED</span>
+      <span class="stat-value green">{{ completedCount }}</span>
     </div>
     <div class="stat-pill">
       <span class="stat-label">TOTAL</span>

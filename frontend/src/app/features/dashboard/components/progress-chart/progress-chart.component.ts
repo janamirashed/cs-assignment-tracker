@@ -10,24 +10,32 @@ import { CommonModule } from '@angular/common';
 })
 export class ProgressChartComponent implements OnChanges {
   @Input() completedCount = 0;
+  @Input() upcomingCount = 0;
+  @Input() overdueCount = 0;
   @Input() totalCount = 0;
   @Input() dueSoonCount = 0;
 
   readonly CIRCUMFERENCE = 301.6;
 
-  notStartedCount = 0;
   percentage = 0;
   completedArc = 0;
-  notStartedArc = 0;
+  upcomingArc = 0;
+  overdueArc = 0;
 
   ngOnChanges(_: SimpleChanges): void {
-    this.notStartedCount = this.totalCount - this.completedCount;
     this.percentage = this.totalCount > 0
       ? Math.round((this.completedCount / this.totalCount) * 100)
       : 0;
-    this.completedArc = this.totalCount > 0
-      ? (this.completedCount / this.totalCount) * this.CIRCUMFERENCE
-      : 0;
-    this.notStartedArc = this.CIRCUMFERENCE - this.completedArc;
+
+    if (this.totalCount > 0) {
+      this.completedArc = (this.completedCount / this.totalCount) * this.CIRCUMFERENCE;
+      this.upcomingArc = (this.upcomingCount / this.totalCount) * this.CIRCUMFERENCE;
+      this.overdueArc = (this.overdueCount / this.totalCount) * this.CIRCUMFERENCE;
+    } else {
+      this.completedArc = 0;
+      this.upcomingArc = 0;
+      this.overdueArc = 0;
+    }
   }
 }
+
