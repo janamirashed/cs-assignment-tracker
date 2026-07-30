@@ -23,8 +23,8 @@ CS Tracker keeps all assignments in one place — sorted by urgency into Upcomin
 ## Screenshots
 
 <div align="center">
-  <img src="docs/assets/main_interface.png" width="49%" alt="Light mode" />
-  <img src="docs/assets/main_interface1.png" width="49%" alt="Dark mode" />
+  <img src="docs/assets/demo2.png" width="49%" alt="Light mode" />
+  <img src="docs/assets/demo1.png" width="49%" alt="Dark mode" />
 </div>
 
 ---
