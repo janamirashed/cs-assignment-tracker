@@ -1,30 +1,76 @@
+<div align="center">
+
 # CS Assignment Tracker
 
-A simple, clean app that helps CS students track and manage their assignments in one place.
+**A web app for CS students to track assignments, deadlines, and progress — with admin tools, dark mode, and a real-time progress overview.**
 
-## The Vision
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
 
-This project combines the ease of a Google Sheet with the power of a web app. It's designed to make assignment tracking less stressful and more straightforward—no complicated menus or confusing buttons.
+**[Live Demo](https://janamirashed.github.io/cs-assignment-tracker/)**
 
-![CS Assignment Tracker Interface](frontend/src/assets/main_interface1.png)
+</div>
 
-## Built For Everyone
-  
-**For Admins:**
-Adding new assignments and updating deadlines is quick and easy. Just fill out a simple form and you're done—no complicated systems to learn.
+---
 
-**For Students:**
-See all your assignments in one place, organized by due date. Mark them off as you complete them and watch your progress grow.
+## Overview
 
-## Key Features
+CS Tracker keeps all assignments in one place — sorted by urgency into Upcoming, Overdue, and Completed sections. A progress donut chart gives an instant read on how many assignments are done vs pending. Admins can add and manage assignments through a simple form. The app supports both light and dark mode and is fully deployed on GitHub Pages.
 
-- **Track Progress:** Mark assignments as complete and see your progress at a glance.
-- **Admin Tools:** Simple forms to add and manage assignments.
-- **Organized by Date:** Assignments are sorted by due date so you see what's due soonest first.
-- **Clean Design:** A modern, easy-to-use interface that looks good and works smoothly.
+---
+
+## Screenshots
+
+<div align="center">
+  <img src="docs/assets/main_interface.png" width="49%" alt="Light mode" />
+  <img src="docs/assets/main_interface1.png" width="49%" alt="Dark mode" />
+</div>
+
+---
+
+## Features
+
+- Assignments grouped into Upcoming, Overdue, and Completed sections
+- Progress donut chart with live counts per category
+- Admin form to add and manage assignments
+- Assignments sorted by due date
+- Persistent dark / light mode toggle
+- Search bar for quick assignment lookup
+- Deployed on GitHub Pages with backend on Hugging Face Spaces
+
+---
 
 ## Tech Stack
 
-- **Frontend:** Angular, HTML, CSS
-- **Backend:** Spring Boot (Java)
-- **Deployment:** GitHub Pages (Frontend) & Hugging Face Spaces (Backend)
+| Layer | Technology |
+|-------|------------|
+| Frontend | Angular, TypeScript, CSS |
+| Backend | Java 17, Spring Boot |
+| Deployment | GitHub Pages (frontend), Hugging Face Spaces (backend) |
+
+---
+
+## Running Locally
+
+**Prerequisites:** Java 17+, Maven, Node.js 18+
+
+**Backend**
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+**Frontend**
+```bash
+cd frontend
+npm install
+ng serve
+```
+App available at `http://localhost:4200`
+
+---
+
+## Author
+
+Jana Rashed — [GitHub](https://github.com/janamirashed) · [LinkedIn](https://www.linkedin.com/in/jana-rashed/) · [Portfolio](https://janamirashed.github.io/my-portfolio/)
