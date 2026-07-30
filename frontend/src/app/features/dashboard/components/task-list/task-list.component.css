@@ -6,6 +6,7 @@
 
 .done-section {
   margin-top: 36px;
+  margin-bottom: 36px;
 }
 
 /* Section Header */
@@ -196,19 +197,9 @@
   color: #1d4ed8;
 }
 
-body.dark-mode .course-tag.blue {
-  background: #1e3a8a;
-  color: #93c5fd;
-}
-
 .course-tag.purple {
   background: #ede9fe;
   color: #6d28d9;
-}
-
-body.dark-mode .course-tag.purple {
-  background: #3b0764;
-  color: #ddd6fe;
 }
 
 .course-tag.green {
@@ -216,19 +207,9 @@ body.dark-mode .course-tag.purple {
   color: #15803d;
 }
 
-body.dark-mode .course-tag.green {
-  background: #14532d;
-  color: #86efac;
-}
-
 .course-tag.amber {
   background: #fef3c7;
   color: #b45309;
-}
-
-body.dark-mode .course-tag.amber {
-  background: #451a03;
-  color: #fde047;
 }
 
 .course-tag.rose {
@@ -236,19 +217,9 @@ body.dark-mode .course-tag.amber {
   color: #be123c;
 }
 
-body.dark-mode .course-tag.rose {
-  background: #4c0519;
-  color: #fca5a5;
-}
-
 .course-tag.teal {
   background: #ccfbf1;
   color: #0f766e;
-}
-
-body.dark-mode .course-tag.teal {
-  background: #134e4a;
-  color: #5eead4;
 }
 
 /* Due Date */

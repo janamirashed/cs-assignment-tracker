@@ -274,6 +274,105 @@
   flex-shrink: 0;
 }
 
+/* DELETE CONFIRMATION MODAL — matches logout modal style */
+.delete-modal-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 36px 32px 28px;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+  animation: slideUp 0.2s ease;
+}
+
+.delete-modal-icon-wrap {
+  width: 60px;
+  height: 60px;
+  background: #fef2f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ef4444;
+  margin-bottom: 4px;
+}
+
+body.dark-mode .delete-modal-icon-wrap {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.delete-modal-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.delete-modal-body {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+  margin: 0 0 8px;
+  font-family: 'Inter', sans-serif;
+}
+
+.delete-modal-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.delete-btn-cancel {
+  flex: 1;
+  padding: 11px 0;
+  border: 1.5px solid var(--border-input);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.delete-btn-cancel:hover {
+  background: var(--bg-hover);
+  border-color: var(--text-muted);
+}
+
+.delete-btn-confirm {
+  flex: 1;
+  padding: 11px 0;
+  border: none;
+  border-radius: 12px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.delete-btn-confirm:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.delete-btn-confirm:active { transform: translateY(0); }
+
 /* Mobile Responsiveness */
 @media (max-width: 1024px) {
   .page-content {
